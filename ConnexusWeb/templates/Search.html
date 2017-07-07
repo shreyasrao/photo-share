@@ -1,0 +1,38 @@
+<!doctype html>
+{% autoescape true %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <p id="demo"></p>
+
+    <script type="text/javascript">
+    var g = {{ streams|safe }}
+    </script>
+
+</head>
+
+<body>
+
+    <br>
+    <div>
+    <form action="/search_streams" method="post">
+        Search:
+        <input id="autocomplete" type="text" name="query_string">
+        <input type="submit" value="Go to Stream">
+    </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+var source =[""];
+$( "#autocomplete" ).autocomplete({
+    source: source.concat(g)
+});
+</script>
+
+</html>
+{% endautoescape %}
